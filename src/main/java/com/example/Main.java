@@ -70,6 +70,12 @@ public class Main {
     return "hello";
 }
 
+@PostMapping("/form")
+@ResponseBody
+public String addFoo(@RequestParam(name = "id") String fooId, @RequestParam String name) { 
+    return "ID: " + fooId + " Name: " + name;
+}
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {
