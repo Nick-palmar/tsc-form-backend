@@ -76,7 +76,7 @@ public class Main {
 @RequestMapping("/form")
 @ResponseBody
 public String addFoo(@RequestParam(name = "id") String fooId, @RequestParam String name) { 
-    return "{foodId:" + foodId + ",name:" + name + "}";
+    return "{fooId:" + fooId + ",name:" + name + "}";
 }
 
   @RequestMapping("/db")
