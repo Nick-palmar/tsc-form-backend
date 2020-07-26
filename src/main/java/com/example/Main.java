@@ -73,10 +73,10 @@ public class Main {
     return "hello";
 }
 
-@PostMapping("/form")
+@RequestMapping("/form")
 @ResponseBody
 public String addFoo(@RequestParam(name = "id") String fooId, @RequestParam String name) { 
-    return "ID: " + fooId + " Name: " + name;
+    return "{\"success\":1}";
 }
 
   @RequestMapping("/db")
