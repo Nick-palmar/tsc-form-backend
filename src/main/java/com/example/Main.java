@@ -75,9 +75,47 @@ public class Main {
 
 @RequestMapping("/form")
 @ResponseBody
-public String form(@RequestParam(required=true, name="practice date") String date, @RequestParam String name, @RequestParam(required=true, name="email") String email_add, @RequestParam(required=true, name="participant role") String role, @RequestParam (required=true, name="age group") String age, @RequestParam(defaultValue=false, name="first symptom")boolean symptoms1) { 
-    return "{date: " + date + ", name: " + name + ",email: " + email_add + ", role: " + role + ", age: " + age + ", sympt: " symptoms1 + "}";
+public String form(@RequestParam(required=true) String date, 
+					@RequestParam String name, 
+					@RequestParam(required=true) String email,
+					@RequestParam(required=true) String role, 
+					@RequestParam (required=true) String age, 
+					@RequestParam(defaultValue="false") boolean symptomOne) { 
+    
+	// create an array list iwth all the values, to put into table
+	ArrayList values = new ArrayList();
+	values.add(date);
+	values.add(name);
+	values.add(email_add);
+	values.add(role);
+	values.add(age);
+	values.add(symptomOne);
+	
+	
+	
+	
+	return "{date: " + date + ", name: " + name + ",email: " + email_add + ", role: " + role + ", age: " + age + ", sympt: " + symptomOne + "}";
 }
+
+private void insertRecord(ArrayList values) throws SQLException {
+	try (Connection connection = dataSource.getConnection()) {
+      Statement stmt = connection.createStatement();
+      stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+      ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+
+      ArrayList<String> output = new ArrayList<String>();
+      while (rs.next()) {
+        output.add("Read from DB: " + rs.getTimestamp("tick"));
+      }
+
+      model.put("records", output);
+      return "db";
+    } catch (Exception e) {
+      model.put("message", e.getMessage());
+      return "error";
+    }
+}
+
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
