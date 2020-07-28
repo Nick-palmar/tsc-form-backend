@@ -75,8 +75,8 @@ public class Main {
 
 @RequestMapping("/form")
 @ResponseBody
-public String addFoo(@RequestParam(name = "full name") String name, @RequestParam(name = "email address") String email) { 
-    return "{name:" + name + ",email:" + email + "}";
+public String form(@RequestParam(required=true name="practice date") String date, @RequestParam String name, @RequestParam(required=true name="email") String email_add, @RequestParam(required=true name="participant role") String role, @RequestParam (required=true name="age group") String age, @RequestParam(defaultValue="false" name="first symptom")boolean symptons1) { 
+    return "{date: " + date + ", name: " + name + ",email: " + email + ", role: " + role + ", age: " + age + ", sympt: " symptoms1 + "}";
 }
 
   @RequestMapping("/db")
