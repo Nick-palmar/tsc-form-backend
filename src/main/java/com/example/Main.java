@@ -37,6 +37,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
+import java.text.SimpleDateFormat;
+
 import static javax.measure.unit.SI.KILOGRAM;
 import javax.measure.quantity.Mass;
 import org.jscience.physics.model.RelativisticModel;
@@ -76,43 +78,63 @@ public class Main {
 @RequestMapping("/form")
 @ResponseBody
 public String form(@RequestParam(required=true) String date, 
-					@RequestParam String name, 
+					@RequestParam(required-true) String name, 
 					@RequestParam(required=true) String email,
 					@RequestParam(required=true) String role, 
 					@RequestParam (required=true) String age, 
-					@RequestParam(defaultValue="false") boolean symptomOne) { 
+					@RequestParam(defaultValue="false") boolean question1
+					@RequestParam(defaultValue="false") boolean question2
+					@RequestParam(defaultValue="false") boolean question3
+					@RequestParam(defaultValue="false") boolean question4
+					@RequestParam(defaultValue="false") boolean question5
+					@RequestParam(defaultValue="false") boolean question6
+					@RequestParam(defaultValue="false") boolean question7
+					@RequestParam(defaultValue="false") boolean question8
+					@RequestParam(defaultValue="false") boolean question9
+					@RequestParam(defaultValue="false") boolean question10) { 
     
-	// create an array list iwth all the values, to put into table
-	ArrayList values = new ArrayList();
-	values.add(date);
-	values.add(name);
-	values.add(email_add);
-	values.add(role);
-	values.add(age);
-	values.add(symptomOne);
+	// send values to form
+	insertIntoForm(date, name, email, role, age, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
 	
 	
 	
 	
-	return "{date: " + date + ", name: " + name + ",email: " + email_add + ", role: " + role + ", age: " + age + ", sympt: " + symptomOne + "}";
+	return "{date: " + date + ", name: " + name + ",email: " + email_add + ", role: " + role + ", age: " + age + "}";
 }
 
-private void insertRecord(ArrayList values) throws SQLException {
+private void insertIntoForm(String date, String name, String email, String role, String age, boolean question1, boolean question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10) throws SQLException {
 	try (Connection connection = dataSource.getConnection()) {
-      Statement stmt = connection.createStatement();
-      stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-      ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+		// sql insert into statement with missing values
+		PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO form(form_date,name,email,role,age_group,question_1,question_2,question_3,question_4,question_5,question_6,question_7,question_8,question_9,question_10) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
+        
+		// change date from string to date
+		String pattern = "yyyy/MM/dd";
+		SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);
+		
+		Date formatDate = dateFormatter.parse(date);
+		
+		// add values to statement passed from method
+		preparedStatement.setDate(1, formatDate);
+		preparedStatement.setString(2, name);
+		preparedStatement.setString(3, email);
+		preparedStatement.setString(4, role);
+		preparedStatement.setString(5, age);
+		preparedStatement.setBoolean(6, question1);
+		preparedStatement.setBoolean(7, question2);
+		preparedStatement.setBoolean(8, question3);
+		preparedStatement.setBoolean(9, question4);
+		preparedStatement.setBoolean(10, question5);
+		preparedStatement.setBoolean(11, question6);
+		preparedStatement.setBoolean(12, question17);
+		preparedStatement.setBoolean(13, question8);
+		preparedStatement.setBoolean(14, question9);
+		preparedStatement.setBoolean(15, question10);
+		
+		
+		preparedStatement.executeUpdate();
 
-      ArrayList<String> output = new ArrayList<String>();
-      while (rs.next()) {
-        output.add("Read from DB: " + rs.getTimestamp("tick"));
-      }
-
-      model.put("records", output);
-      return "db";
     } catch (Exception e) {
-      model.put("message", e.getMessage());
-      return "error";
+
     }
 }
 
