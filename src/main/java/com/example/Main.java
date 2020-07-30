@@ -37,7 +37,7 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Map;
-
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -97,7 +97,11 @@ public String form(@RequestParam(required=true) String date,
 					@RequestParam(defaultValue="false") boolean question10) { 
     
 	// send values to form
-	this.insertIntoForm(date, name, email, role, age, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+	try {
+		insertIntoForm(date, name, email, role, age, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
 	
 	
 	
@@ -113,7 +117,12 @@ private void insertIntoForm(String date, String name, String email, String role,
 		// change date from string to date
 		String pattern = "yyyy/MM/dd";
 		SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);
-		Date formatDateUtil = dateFormatter.parse(date);
+		Date formatDateUtil = null;
+		try {
+			formatDateUtil = dateFormatter.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 		// add values to statement passed from method
 		preparedStatement.setDate(1, new java.sql.Date(formatDateUtil.getTime()));
