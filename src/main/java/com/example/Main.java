@@ -136,7 +136,7 @@ private void insertIntoForm(String date, String name, String email, String role,
 		preparedStatement.executeUpdate();
 
     } catch (SQLException e) {
-		e.printStackTrace();
+		e.getMessage();
     }
 }
 
