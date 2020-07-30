@@ -82,15 +82,15 @@ public String form(@RequestParam(required=true) String date,
 					@RequestParam(required=true) String email,
 					@RequestParam(required=true) String role, 
 					@RequestParam (required=true) String age, 
-					@RequestParam(defaultValue="false") boolean question1
-					@RequestParam(defaultValue="false") boolean question2
-					@RequestParam(defaultValue="false") boolean question3
-					@RequestParam(defaultValue="false") boolean question4
-					@RequestParam(defaultValue="false") boolean question5
-					@RequestParam(defaultValue="false") boolean question6
-					@RequestParam(defaultValue="false") boolean question7
-					@RequestParam(defaultValue="false") boolean question8
-					@RequestParam(defaultValue="false") boolean question9
+					@RequestParam(defaultValue="false") boolean question1,
+					@RequestParam(defaultValue="false") boolean question2,
+					@RequestParam(defaultValue="false") boolean question3,
+					@RequestParam(defaultValue="false") boolean question4,
+					@RequestParam(defaultValue="false") boolean question5,
+					@RequestParam(defaultValue="false") boolean question6,
+					@RequestParam(defaultValue="false") boolean question7,
+					@RequestParam(defaultValue="false") boolean question8,
+					@RequestParam(defaultValue="false") boolean question9,
 					@RequestParam(defaultValue="false") boolean question10) { 
     
 	// send values to form
@@ -105,7 +105,7 @@ public String form(@RequestParam(required=true) String date,
 private void insertIntoForm(String date, String name, String email, String role, String age, boolean question1, boolean question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10) throws SQLException {
 	try (Connection connection = dataSource.getConnection()) {
 		// sql insert into statement with missing values
-		PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO form(form_date,name,email,role,age_group,question_1,question_2,question_3,question_4,question_5,question_6,question_7,question_8,question_9,question_10) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
+		PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO form(form_date,name,email,role,age_group,question_1,question_2,question_3,question_4,question_5,question_6,question_7,question_8,question_9,question_10) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"));
         
 		// change date from string to date
 		String pattern = "yyyy/MM/dd";
