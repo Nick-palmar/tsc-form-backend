@@ -40,6 +40,8 @@ import java.util.Map;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.sql.Date;
+
 
 import static javax.measure.unit.SI.KILOGRAM;
 import javax.measure.quantity.Mass;
@@ -113,10 +115,12 @@ private void insertIntoForm(String date, String name, String email, String role,
 		String pattern = "yyyy/MM/dd";
 		SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);
 		
-		Date formatDate = dateFormatter.parse(date);
+		// change to sql date
+		java.util.Date formatDateUtil = dateFormatter.parse(date);
+		java.sql.Date formatDateSql = new java.sql.Date(formatDateUtil.getTime());
 		
 		// add values to statement passed from method
-		preparedStatement.setDate(1, formatDate);
+		preparedStatement.setDate(1, formatDateSql);
 		preparedStatement.setString(2, name);
 		preparedStatement.setString(3, email);
 		preparedStatement.setString(4, role);
