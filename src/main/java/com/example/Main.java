@@ -103,9 +103,9 @@ public String form(@RequestParam(required=true) String date,
 }
 
 private void insertIntoForm(String date, String name, String email, String role, String age, boolean question1, boolean question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10) throws SQLException {
-	try (Connection connection = dataSource.getConnection()) {
+	try (Connection connection = dataSource.getConnection();
 		// sql insert into statement with missing values
-		PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO form(form_date,name,email,role,age_group,question_1,question_2,question_3,question_4,question_5,question_6,question_7,question_8,question_9,question_10) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"));
+		PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO form(form_date,name,email,role,age_group,question_1,question_2,question_3,question_4,question_5,question_6,question_7,question_8,question_9,question_10) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
         
 		// change date from string to date
 		String pattern = "yyyy/MM/dd";
