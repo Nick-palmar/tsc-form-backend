@@ -34,10 +34,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Map;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static javax.measure.unit.SI.KILOGRAM;
 import javax.measure.quantity.Mass;
@@ -78,7 +80,7 @@ public class Main {
 @RequestMapping("/form")
 @ResponseBody
 public String form(@RequestParam(required=true) String date, 
-					@RequestParam(required-true) String name, 
+					@RequestParam(required=true) String name, 
 					@RequestParam(required=true) String email,
 					@RequestParam(required=true) String role, 
 					@RequestParam (required=true) String age, 
@@ -99,7 +101,7 @@ public String form(@RequestParam(required=true) String date,
 	
 	
 	
-	return "{date: " + date + ", name: " + name + ",email: " + email_add + ", role: " + role + ", age: " + age + "}";
+	return "{date: " + date + ", name: " + name + ",email: " + email + ", role: " + role + ", age: " + age + "}";
 }
 
 private void insertIntoForm(String date, String name, String email, String role, String age, boolean question1, boolean question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10) throws SQLException {
@@ -125,7 +127,7 @@ private void insertIntoForm(String date, String name, String email, String role,
 		preparedStatement.setBoolean(9, question4);
 		preparedStatement.setBoolean(10, question5);
 		preparedStatement.setBoolean(11, question6);
-		preparedStatement.setBoolean(12, question17);
+		preparedStatement.setBoolean(12, question7);
 		preparedStatement.setBoolean(13, question8);
 		preparedStatement.setBoolean(14, question9);
 		preparedStatement.setBoolean(15, question10);
