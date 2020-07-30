@@ -40,7 +40,6 @@ import java.util.Map;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.sql.Date;
 
 
 import static javax.measure.unit.SI.KILOGRAM;
