@@ -97,7 +97,7 @@ public String form(@RequestParam(required=true) String date,
 					@RequestParam(defaultValue="false") boolean question10) { 
     
 	// send values to form
-	insertIntoForm(date, name, email, role, age, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+	this.insertIntoForm(date, name, email, role, age, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
 	
 	
 	
