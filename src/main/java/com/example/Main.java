@@ -113,13 +113,10 @@ private void insertIntoForm(String date, String name, String email, String role,
 		// change date from string to date
 		String pattern = "yyyy/MM/dd";
 		SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);
-		
-		// change to sql date
-		java.util.Date formatDateUtil = dateFormatter.parse(date);
-		java.sql.Date formatDateSql = new java.sql.Date(formatDateUtil.getTime());
+		Date formatDateUtil = dateFormatter.parse(date);
 		
 		// add values to statement passed from method
-		preparedStatement.setDate(1, formatDateSql);
+		preparedStatement.setDate(1, new java.sql.Date(formatDateUtil.getTime()));
 		preparedStatement.setString(2, name);
 		preparedStatement.setString(3, email);
 		preparedStatement.setString(4, role);
