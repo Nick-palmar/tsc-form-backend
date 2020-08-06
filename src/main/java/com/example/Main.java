@@ -106,7 +106,7 @@ public String form(@RequestParam(required=true) String date,
 	
 	
 	
-	return "{'formDate': '" + date + "', 'name': '" + name + "','email': '" + email + "', 'role': '" + role + "', 'age': '" + age + "'}";
+	return "{\"formDate\": " + "\"" + date + "\"" + ", \"name\": " + "\"" + name + "\"" + ", \"email\": " + "\"" + email + "\"" + ", \"role\": " + "\"" + role + "\"" + ", \"age\": " + "\"" + age + "\"" + "}";
 }
 
 private void insertIntoForm(String date, String name, String email, String role, String age, boolean question1, boolean question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10) throws SQLException {
