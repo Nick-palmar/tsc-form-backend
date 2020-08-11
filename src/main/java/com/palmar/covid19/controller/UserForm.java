@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,17 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.palmar.covid19.data.CovidForm;
 
 @Controller
-@SpringBootApplication
 public class UserForm {
 	
 	private CovidForm userInfo;
 	
-	public static void main(String[] args) throws Exception {
-	    SpringApplication.run(UserForm.class, args);
-	  }
-	
-	@RequestMapping("/form")
-	@ResponseBody
+	@GetMapping("/form")
 	public String form(@RequestParam(required=true) String formDate, 
 						@RequestParam(required=true) String name, 
 						@RequestParam(required=true) String email,
