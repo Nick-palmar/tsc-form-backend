@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 
 import com.palmar.covid19.data.CovidForm;
 
-@Configuration
+
 public class FormDaoImpl {
 
 	@Autowired
