@@ -2,6 +2,7 @@ package com.palmar.covid19.controller;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.palmar.covid19.data.CovidForm;
+import com.palmar.covid19.Dao.FormDaoImpl;
 
 @Controller
 public class UserForm {
+	
+	private FormDaoImpl formDaoImpl;
 	
 	private CovidForm userInfo;
 	
@@ -49,6 +53,13 @@ public class UserForm {
 		userInfo.setQ8(question8);
 		userInfo.setQ9(question9);
 		userInfo.setQ10(question10);
+		
+		// insert object into forms table
+		try {
+			formDaoImpl.insertIntoForm(userInfo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return "requested from server";
 		
