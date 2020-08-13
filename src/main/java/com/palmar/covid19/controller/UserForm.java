@@ -22,7 +22,7 @@ public class UserForm {
 	
 	private CovidForm userInfo;
 	
-	@GetMapping("/form")
+	@RequestMapping("/form")
 	public String form(@RequestParam(required=true) String formDate, 
 						@RequestParam(required=true) String name, 
 						@RequestParam(required=true) String email,
