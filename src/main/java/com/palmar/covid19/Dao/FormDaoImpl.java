@@ -10,13 +10,20 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 
 import com.palmar.covid19.data.AdminForm;
 import com.palmar.covid19.data.CovidForm;
 import com.palmar.covid19.data.UserForm;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 
 public class FormDaoImpl {
+	
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
 
 	@Autowired
 	private DataSource dataSource;
@@ -142,5 +149,19 @@ public class FormDaoImpl {
 		return selectedRecords;
 		
 	
+	}
+	
+	@Bean
+	public DataSource dataSource() throws SQLException {
+		System.out.println("Entering dataSource");
+		if (dbUrl == null || dbUrl.isEmpty()) {
+			System.out.println("url is empty");
+			return new HikariDataSource();
+		} else {
+			HikariConfig config = new HikariConfig();
+			config.setJdbcUrl(dbUrl);
+			System.out.println("dataSource url: " + dbUrl);
+			return new HikariDataSource(config);
+		}
 	}
 }
