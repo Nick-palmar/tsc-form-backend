@@ -29,6 +29,7 @@ public class UserView {
 		
 		// insert object into forms table
 		try {
+			System.out.println(userInfo.getName());
 			formDaoImpl.insertIntoForm(userInfo);
 		} catch (SQLException e) {
 			e.printStackTrace();
