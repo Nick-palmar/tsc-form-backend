@@ -46,6 +46,7 @@ public class Application {
 			HikariConfig config = new HikariConfig();
 			config.setJdbcUrl(dbUrl);
 			System.out.println("dataSource url: " + dbUrl);
+			System.out.println("config: " + config);
 			return new HikariDataSource(config);
 		}
 	}
