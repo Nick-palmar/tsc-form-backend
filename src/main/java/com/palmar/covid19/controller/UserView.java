@@ -20,7 +20,7 @@ import com.palmar.covid19.Dao.FormDaoImpl;
 @Controller
 public class UserView {
 	
-	private FormDaoImpl formDaoImpl;
+	private FormDaoImpl formDaoImpl = new FormDaoImpl();
 	
 	// use @RequestBody to automatically deserialize the JSON and convert it into the userINfo object
 	@RequestMapping("/form")
