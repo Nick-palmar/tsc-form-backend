@@ -27,6 +27,7 @@ public class Application {
 	
 	public Application() {
 		this.appDataSource = dataSource;
+		System.out.println(this.appDataSource);
 	}
 
 	public static void main(String[] args) {
