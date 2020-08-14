@@ -11,7 +11,9 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.palmar.covid19.data.AdminForm;
 import com.palmar.covid19.data.CovidForm;
+import com.palmar.covid19.data.UserForm;
 
 
 public class FormDaoImpl {
@@ -20,7 +22,7 @@ public class FormDaoImpl {
 	private DataSource dataSource;
 	
 	
-	public void insertIntoForm(CovidForm formData) throws SQLException{
+	public void insertIntoForm(UserForm formData) throws SQLException{
 		System.out.println("Entering insertInto");
 		try (Connection connection = dataSource.getConnection();
 			// sql insert into statement with missing values
@@ -52,11 +54,11 @@ public class FormDaoImpl {
 		    }
 	}
 	
-	public ArrayList<CovidForm> getRequestedForms(CovidForm adminRequest) throws SQLException {
+	public ArrayList<UserForm> getRequestedForms(AdminForm adminRequest) throws SQLException {
 		final String myQuery;
 		// initialize array list to be returned
-		ArrayList<CovidForm> selectedRecords = new ArrayList<CovidForm>();
-		CovidForm currentRecord;
+		ArrayList<UserForm> selectedRecords = new ArrayList<UserForm>();
+		UserForm currentRecord;
 		
 		String notFlaggedQueryCheck = "question_1 = 'f' AND question_2 = 'f' AND question_3 = 'f' AND question_4 = 'f' AND"
 				+ " question_5 = 'f' AND question_6 = 'f' AND question_7 = 'f' AND question_8 = 'f' AND question_9 = 'f' AND question_10 = 'f';";
@@ -116,19 +118,9 @@ public class FormDaoImpl {
 						boolean recordQ10 = resultSet.getBoolean(16);
 						
 						// create new covid form object for record
-						currentRecord = new CovidForm(recordName, strRecordDate, recordAgeGroup);
-						currentRecord.setEmail(recordEmail);
-						currentRecord.setRole(recordRole);
-						currentRecord.setQ1(recordQ1);
-						currentRecord.setQ2(recordQ2);
-						currentRecord.setQ3(recordQ3);
-						currentRecord.setQ4(recordQ4);
-						currentRecord.setQ5(recordQ5);
-						currentRecord.setQ6(recordQ6);
-						currentRecord.setQ7(recordQ7);
-						currentRecord.setQ8(recordQ8);
-						currentRecord.setQ9(recordQ9);
-						currentRecord.setQ10(recordQ10);
+						currentRecord = new UserForm(recordName, strRecordDate, recordAgeGroup, recordEmail, recordRole, 
+								recordQ1, recordQ2, recordQ3, recordQ4, recordQ5, recordQ6, recordQ7, recordQ8, recordQ9, recordQ10);
+						
 						// check if the forms are flagged forms, will be used for ease of output in angular
 						if (recordQ1 == true || recordQ2 == true || recordQ3 == true || recordQ4 == true || recordQ5 == true || recordQ6 == true ||
 								recordQ7 == true || recordQ8 == true || recordQ9 == true || recordQ10 == true) {
