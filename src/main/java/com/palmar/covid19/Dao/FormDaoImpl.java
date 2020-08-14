@@ -10,29 +10,24 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 
+import com.palmar.covid19.Application;
 import com.palmar.covid19.data.AdminForm;
 import com.palmar.covid19.data.CovidForm;
 import com.palmar.covid19.data.UserForm;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 
 
-public class FormDaoImpl {
+public class FormDaoImpl {	
+
+//	@Autowired
+//	private DataSource dataSource;
 	
-	@Value("${spring.datasource.url}")
-	private String dbUrl;
-
-	@Autowired
-	private DataSource dataSource;
-	
+	private Application app = new Application();
 	
 	public void insertIntoForm(UserForm formData) throws SQLException{
 		System.out.println("Entering insertInto");
-		System.out.println(dataSource);
-		try (Connection connection = dataSource.getConnection();
+		System.out.println(app.appDataSource);
+		try (Connection connection = app.appDataSource.getConnection();
 			// sql insert into statement with missing values
 			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO form(form_date,name,email,role,age_group,question_1,question_2,question_3,question_4,question_5,question_6,question_7,question_8,question_9,question_10) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);")) {
 		        
@@ -99,7 +94,7 @@ public class FormDaoImpl {
 			myQuery = "SELECT * FROM form "
 					+ "WHERE form_date=" + adminRequest.getDate() + ";";
 		}
-		try (Connection connection = dataSource.getConnection();
+		try (Connection connection = app.appDataSource.getConnection();
 				// prepare sql select query
 				PreparedStatement preparedStatement = connection.prepareStatement(myQuery)) {
 			        // get records from select
@@ -149,19 +144,5 @@ public class FormDaoImpl {
 		return selectedRecords;
 		
 	
-	}
-	
-	@Bean
-	public DataSource dataSource() throws SQLException {
-		System.out.println("Entering dataSource");
-		if (dbUrl == null || dbUrl.isEmpty()) {
-			System.out.println("url is empty");
-			return new HikariDataSource();
-		} else {
-			HikariConfig config = new HikariConfig();
-			config.setJdbcUrl(dbUrl);
-			System.out.println("dataSource url: " + dbUrl);
-			return new HikariDataSource(config);
-		}
 	}
 }
