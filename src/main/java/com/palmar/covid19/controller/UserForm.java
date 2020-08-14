@@ -61,7 +61,7 @@ public class UserForm {
 			e.printStackTrace();
 		}
 		
-		return "requested from server";
+		return "{\"formDate\": " + "\"" + userInfo.getDate() + "\"" + ", \"name\": " + "\"" + userInfo.getName() + "\"" + ", \"email\": " + "\"" + userInfo.getEmail() + "\"" + ", \"role\": " + "\"" + userInfo.getRole() + "\"" + ", \"age\": " + "\"" + userInfo.getAge() + "\"" + "}";
 		
 	}
 
