@@ -74,28 +74,28 @@ public class FormDaoImpl {
 		// there are 3 parameters to be checked, so 8 possible different queries the admin can request. Check which query the admin has requested
 		if (adminRequest.getFlagStatus() == true && !adminRequest.getAge().equals("any") && !adminRequest.getName().isEmpty()) {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + "AND age_group=" + adminRequest.getAge() + "AND name=" + adminRequest.getName() + "AND (" + FlaggedQueryCheck + ");";
+					+ "WHERE form_date='" + adminRequest.getDate() + "' AND age_group=" + adminRequest.getAge() + "AND name='" + adminRequest.getName() + "' AND (" + FlaggedQueryCheck + ");";
 		} else if (adminRequest.getFlagStatus() == false && !adminRequest.getAge().equals("any") && !adminRequest.getName().isEmpty()) {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + "AND age_group=" + adminRequest.getAge() + "AND name=" + adminRequest.getName() + ";";
+					+ "WHERE form_date='" + adminRequest.getDate() + "' AND age_group='" + adminRequest.getAge() + "' AND name='" + adminRequest.getName() + "';";
 		} else if (adminRequest.getFlagStatus() == false && adminRequest.getAge().equals("any") && !adminRequest.getName().isEmpty()) {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + "AND name=" + adminRequest.getName() + ";";
+					+ "WHERE form_date='" + adminRequest.getDate() + "' AND name='" + adminRequest.getName() + "';";
 		} else if (adminRequest.getFlagStatus() == true && adminRequest.getAge().equals("any") && adminRequest.getName().isEmpty()) {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + "AND (" + FlaggedQueryCheck + ");";
+					+ "WHERE form_date='" + adminRequest.getDate() + "' AND (" + FlaggedQueryCheck + ");";
 		} else if (adminRequest.getFlagStatus() == true && !adminRequest.getAge().equals("any") && adminRequest.getName().isEmpty()) {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + "AND age_group=" + adminRequest.getAge() + "AND (" + FlaggedQueryCheck + ");";
+					+ "WHERE form_date='" + adminRequest.getDate() + "' AND age_group='" + adminRequest.getAge() + "' AND (" + FlaggedQueryCheck + ");";
 		} else if (adminRequest.getFlagStatus() == true && adminRequest.getAge().equals("any") && !adminRequest.getName().isEmpty()) {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + "AND name=" + adminRequest.getName() + "AND (" + FlaggedQueryCheck + ";";
+					+ "WHERE form_date='" + adminRequest.getDate() + "' AND name='" + adminRequest.getName() + "' AND (" + FlaggedQueryCheck + ";";
 		} else if (adminRequest.getFlagStatus() == false && !adminRequest.getAge().equals("any") && adminRequest.getName().isEmpty()) {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + "AND age_group=" + adminRequest.getAge() + ";";
+					+ "WHERE form_date='" + adminRequest.getDate() + "' AND age_group='" + adminRequest.getAge() + "';";
 		} else {
 			myQuery = "SELECT * FROM form "
-					+ "WHERE form_date=" + adminRequest.getDate() + ";";
+					+ "WHERE form_date='" + adminRequest.getDate() + "';";
 		}
 		System.out.println(myQuery);
 
