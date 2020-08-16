@@ -35,7 +35,7 @@ public class FormDaoImpl {
 		        
 				
 			// add values to statement passed from method
-			preparedStatement.setDate(1, new java.sql.Date(formData.getDate().getTime()));
+			preparedStatement.setDate(1, formData.getDate());
 			preparedStatement.setString(2, formData.getName());
 			preparedStatement.setString(3, formData.getEmail());
 			preparedStatement.setString(4, formData.getRole());

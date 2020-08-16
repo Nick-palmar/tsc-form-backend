@@ -9,7 +9,7 @@ public class CovidForm {
 	// define attributes that may be used in admin view or in user form
 	// variables applicable to both
 	private String name;
-	private Date formDate;
+	private java.sql.Date formDate;
 	private String ageGroup;
 
 
@@ -29,8 +29,8 @@ public class CovidForm {
 			e.printStackTrace();
 		}
 		
-		this.formDate = formatDateUtil;
-		System.out.println(new java.sql.Date(this.formDate.getTime()));
+		this.formDate = new java.sql.Date(formatDateUtil.getTime());
+		System.out.println(this.formDate);
 	}
 	
 	// provide setters and getters for private attributes in constructor
@@ -40,10 +40,10 @@ public class CovidForm {
 	public String getName() {
 		return this.name;
 	}
-	public void setDate(Date newDate) {
+	public void setDate(java.sql.Date newDate) {
 		this.formDate = newDate;
 	}
-	public Date getDate() {
+	public java.sql.Date getDate() {
 		return this.formDate;
 	}
 	public void setAge(String newAge) {
