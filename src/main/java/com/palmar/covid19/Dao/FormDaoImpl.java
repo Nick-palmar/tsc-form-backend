@@ -66,8 +66,6 @@ public class FormDaoImpl {
 		ArrayList<UserForm> selectedRecords = new ArrayList<UserForm>();
 		UserForm currentRecord;
 		
-		String notFlaggedQueryCheck = "question_1 = 'f' AND question_2 = 'f' AND question_3 = 'f' AND question_4 = 'f' AND"
-				+ " question_5 = 'f' AND question_6 = 'f' AND question_7 = 'f' AND question_8 = 'f' AND question_9 = 'f' AND question_10 = 'f';";
 		String FlaggedQueryCheck = "question_1 = 't' OR question_2 = 't' OR question_3 = 't' OR question_4 = 't' OR"
 				+ " question_5 = 't' OR question_6 = 't' OR question_7 = 't' OR question_8 = 't' OR question_9 = 't' OR question_10 = 't'";
 		
