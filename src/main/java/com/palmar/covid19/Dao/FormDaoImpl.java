@@ -61,6 +61,7 @@ public class FormDaoImpl {
 	
 	public ArrayList<UserForm> getRequestedForms(AdminForm adminRequest) throws SQLException, URISyntaxException {
 		final String myQuery;
+		System.out.println("Entering getRequestedForm");
 		// initialize array list to be returned
 		ArrayList<UserForm> selectedRecords = new ArrayList<UserForm>();
 		UserForm currentRecord;
@@ -96,6 +97,8 @@ public class FormDaoImpl {
 			myQuery = "SELECT * FROM form "
 					+ "WHERE form_date=" + adminRequest.getDate() + ";";
 		}
+		System.out.println(myQuery);
+
 		try {
 			connection = Application.getConnection();
 			// prepare sql select query
