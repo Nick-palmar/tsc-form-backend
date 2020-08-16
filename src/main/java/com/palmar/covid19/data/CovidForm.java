@@ -3,6 +3,8 @@ package com.palmar.covid19.data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class CovidForm {
 	
@@ -19,18 +21,26 @@ public class CovidForm {
 		this.name = name;
 		this.ageGroup = ageGroup;
 		
-		// change date from string to date
-		String pattern = "yyyy/MM/dd";
-		SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);
-		Date formatDateUtil = null;
-		try {
-			formatDateUtil = dateFormatter.parse(formDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		Pattern goodPattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
 		
-		this.formDate = new java.sql.Date(formatDateUtil.getTime());
-		System.out.println(this.formDate);
+		// check if the pattern is already good
+		if (goodPattern.matcher(formDate).matches()) { 
+			this.formDate = java.sql.Date.valueOf(formDate);
+		} else {
+		
+			// change date from string to date
+			String pattern = "yyyy/MM/dd";
+			SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);
+			Date formatDateUtil = null;
+			try {
+				formatDateUtil = dateFormatter.parse(formDate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			this.formDate = new java.sql.Date(formatDateUtil.getTime());
+			System.out.println(this.formDate);
+		}
 	}
 	
 	// provide setters and getters for private attributes in constructor
