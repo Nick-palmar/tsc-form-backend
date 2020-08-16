@@ -26,6 +26,7 @@ public class UserView {
 	
 	// use @RequestBody to automatically deserialize the JSON and convert it into the userINfo object
 	@PostMapping("/form")
+	@ResponseBody
 	public String form(@RequestBody UserForm userInfo) throws URISyntaxException { 
 	    
 		
