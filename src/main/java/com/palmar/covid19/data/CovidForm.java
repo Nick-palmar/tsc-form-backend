@@ -19,7 +19,6 @@ public class CovidForm {
 		this.name = name;
 		this.ageGroup = ageGroup;
 		
-		System.out.println(formDate.getClass().getName());
 		// change date from string to date
 		String pattern = "yyyy/MM/dd";
 		SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);
@@ -31,6 +30,7 @@ public class CovidForm {
 		}
 		
 		this.formDate = formatDateUtil;
+		System.out.println(this.formDate);
 	}
 	
 	// provide setters and getters for private attributes in constructor
