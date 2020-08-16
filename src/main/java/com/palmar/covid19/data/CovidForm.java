@@ -19,6 +19,7 @@ public class CovidForm {
 		this.name = name;
 		this.ageGroup = ageGroup;
 		
+		System.out.println(formDate.getClass().getName());
 		// change date from string to date
 		String pattern = "yyyy/MM/dd";
 		SimpleDateFormat dateFormatter = new SimpleDateFormat(pattern);

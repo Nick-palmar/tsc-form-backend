@@ -27,6 +27,7 @@ public class Application {
 
 	
 	public static Connection getConnection() throws URISyntaxException, SQLException {
+		System.out.println("dataSource url: " + dbUrl);
 		return DriverManager.getConnection(dbUrl);
 	}
 
