@@ -30,7 +30,7 @@ public class CovidForm {
 		}
 		
 		this.formDate = formatDateUtil;
-		System.out.println(this.formDate);
+		System.out.println(new java.sql.Date(this.formDate.getTime()));
 	}
 	
 	// provide setters and getters for private attributes in constructor
