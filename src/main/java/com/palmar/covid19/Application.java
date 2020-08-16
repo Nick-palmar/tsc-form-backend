@@ -1,5 +1,8 @@
 package com.palmar.covid19;
 
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
@@ -17,17 +20,14 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication
 public class Application {
 	
-	public DataSource appDataSource;
 	
 	@Value("${spring.datasource.url}")
-	private String dbUrl;
+	static
+	String dbUrl;
+
 	
-	@Autowired
-	private DataSource dataSource;
-	
-	public Application() {
-		this.appDataSource = dataSource;
-		System.out.println(this.appDataSource);
+	public static Connection getConnection() throws URISyntaxException, SQLException {
+		return DriverManager.getConnection(dbUrl);
 	}
 
 	public static void main(String[] args) {
@@ -36,21 +36,21 @@ public class Application {
 
 	}
 	
-	@Bean
-	public DataSource dataSource() throws SQLException {
-		System.out.println("Entering dataSource");
-		if (dbUrl == null || dbUrl.isEmpty()) {
-			System.out.println("url is empty");
-			return new HikariDataSource();
-		} else {
-			HikariConfig config = new HikariConfig();
-			config.setJdbcUrl(dbUrl);
-			System.out.println("dataSource url: " + dbUrl);
-			System.out.println("config: " + config);
-			HikariDataSource hds = new HikariDataSource(config);
-			System.out.println("hikari: " + hds);
-			return hds;
-		}
-	}
+//	@Bean
+//	public DataSource dataSource() throws SQLException {
+//		System.out.println("Entering dataSource");
+//		if (dbUrl == null || dbUrl.isEmpty()) {
+//			System.out.println("url is empty");
+//			return new HikariDataSource();
+//		} else {
+//			HikariConfig config = new HikariConfig();
+//			config.setJdbcUrl(dbUrl);
+//			System.out.println("dataSource url: " + dbUrl);
+//			System.out.println("config: " + config);
+//			HikariDataSource hds = new HikariDataSource(config);
+//			System.out.println("hikari: " + hds);
+//			return hds;
+//		}
+//	}
 
 }
