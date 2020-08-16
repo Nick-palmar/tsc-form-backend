@@ -1,5 +1,6 @@
 package com.palmar.covid19.controller;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class AdminView {
 	public String admin(@RequestParam(defaultValue="false") boolean isFlagged,
 			@RequestParam (defaultValue="any") String age, 
 			@RequestParam(required=true) String formDate, 
-			@RequestParam(required=true) String searchName) {
+			@RequestParam(required=true) String searchName) throws URISyntaxException {
 		
 		// create new adminRequest object to pass to dao
 		adminRequest = new AdminForm(searchName, formDate, age, isFlagged);

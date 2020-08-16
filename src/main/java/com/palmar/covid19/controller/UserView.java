@@ -1,5 +1,6 @@
 package com.palmar.covid19.controller;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserView {
 	
 	// use @RequestBody to automatically deserialize the JSON and convert it into the userINfo object
 	@RequestMapping("/form")
-	public String form(@RequestBody UserForm userInfo) { 
+	public String form(@RequestBody UserForm userInfo) throws URISyntaxException { 
 	    
 		
 		// insert object into forms table
