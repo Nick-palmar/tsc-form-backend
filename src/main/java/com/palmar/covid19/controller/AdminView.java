@@ -54,12 +54,11 @@ public class AdminView {
 		for (UserForm form: selectedForms) {
 			testReturn += "\n name: " + form.getName() + " email: " + form.getEmail() + " date: " + form.getDate() + " role: " + form.getRole() + " team: " + form.getAge() + " flagged: " + form.getFlagStatus();
 		}
-//		if (testReturn.equals("")) {
-//			return "No records";
-//		} else {
-//			return testReturn;
-//		}
-		return "Flagged: " + isFlagged + " age: " + age + " date: " + formDate + " name" + searchName;
+		if (testReturn.equals("")) {
+			return "No records";
+		} else {
+			return testReturn;
+		}
 	}
 	
 	
