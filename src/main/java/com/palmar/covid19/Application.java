@@ -20,13 +20,8 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication
 public class Application {
 	
-	
-	@Value("${spring.datasource.url}")
-	static
-	String dbUrl;
-
-	
 	public static Connection getConnection() throws URISyntaxException, SQLException {
+		String dbUrl = System.getenv("JDBC_DATABASE_URL");
 		System.out.println("dataSource url: " + dbUrl);
 		return DriverManager.getConnection(dbUrl);
 	}
