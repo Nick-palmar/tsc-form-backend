@@ -42,9 +42,9 @@ public class UserView {
 		
 	}
 	
-	@RequestMapping("/clone")
+	@RequestMapping("/admin")
 	public String clone() {
-		return "clone";
+		return "admin";
 	}
 
 }
