@@ -43,6 +43,7 @@ public class UserView {
 	}
 	
 	@RequestMapping("/clone")
+	@ResponseBody
 	public String welcome() {
 		return "clone";
 	}
