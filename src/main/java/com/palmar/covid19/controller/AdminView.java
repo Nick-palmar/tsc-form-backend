@@ -51,17 +51,6 @@ public class AdminView {
 		
 		// return the list of forms to the http get request in angular
 		return selectedForms;
-		
-//		String testReturn = "";
-//		
-//		for (UserForm form: selectedForms) {
-//			testReturn += "\n name: " + form.getName() + " email: " + form.getEmail() + " date: " + form.getDate() + " role: " + form.getRole() + " team: " + form.getAge() + " flagged: " + form.getFlagStatus();
-//		}
-//		if (testReturn.equals("")) {
-//			return "No records";
-//		} else {
-//			return testReturn;
-//		}
 	}
 	
 	@RequestMapping("/admin")
