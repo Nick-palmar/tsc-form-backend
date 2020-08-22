@@ -44,7 +44,7 @@ public class UserView {
 	
 	@RequestMapping("/clone")
 	public String clone() {
-		return "form";
+		return "clone";
 	}
 
 }
