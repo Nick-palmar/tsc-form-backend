@@ -43,8 +43,8 @@ public class UserView {
 	}
 	
 	@RequestMapping("/clone")
-	public String welcome() {
-		return "clone.html";
+	public String clone() {
+		return "admin";
 	}
 
 }
