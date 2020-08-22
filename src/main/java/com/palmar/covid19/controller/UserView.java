@@ -42,9 +42,9 @@ public class UserView {
 		
 	}
 	
-	@RequestMapping("/admin")
-	public String clone() {
-		return "admin";
+	@RequestMapping("/form")
+	public String getFormPage() {
+		return "form";
 	}
 
 }

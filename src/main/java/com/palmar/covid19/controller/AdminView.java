@@ -64,5 +64,10 @@ public class AdminView {
 //		}
 	}
 	
+	@RequestMapping("/admin")
+	public String getAdminPage() {
+		return "admin";
+	}
+	
 	
 }
