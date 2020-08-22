@@ -41,5 +41,10 @@ public class UserView {
 		return "{\"formDate\": " + "\"" + userInfo.getDate() + "\"" + ", \"name\": " + "\"" + userInfo.getName() + "\"" + ", \"email\": " + "\"" + userInfo.getEmail() + "\"" + ", \"role\": " + "\"" + userInfo.getRole() + "\"" + ", \"age\": " + "\"" + userInfo.getAge() + "\"" + "}";
 		
 	}
+	
+	@RequestMapping("/clone")
+	public String welcome() {
+		return "clone";
+	}
 
 }
