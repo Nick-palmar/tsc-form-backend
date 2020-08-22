@@ -30,7 +30,7 @@ public class AdminView {
 //	    SpringApplication.run(AdminView.class, args);
 //	  }
 	
-	@GetMapping("/admin/form")
+	@GetMapping("/admin/find")
 	@ResponseBody
 	public ArrayList<UserForm> admin(@RequestParam(defaultValue="false") boolean isFlagged,
 			@RequestParam (defaultValue="any") String age, 
