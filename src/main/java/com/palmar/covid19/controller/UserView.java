@@ -25,7 +25,7 @@ public class UserView {
 	private FormDaoImpl formDaoImpl = new FormDaoImpl();
 	
 	// use @RequestBody to automatically deserialize the JSON and convert it into the userINfo object
-	@PostMapping("/form")
+	@PostMapping("/form/submit")
 	@ResponseBody
 	public String form(@RequestBody UserForm userInfo) throws URISyntaxException { 
 	    
